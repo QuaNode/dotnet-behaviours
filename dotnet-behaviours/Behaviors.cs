@@ -8,7 +8,6 @@ namespace dotnet_behaviours
         Dictionary<string, object> behavioursJSON = null;
         Dictionary<string, object> parameters;
         private readonly IGetURLFunction getURL = null;
-        private IExceptionCallback cb;
 
         protected Behaviors(IGetURLFunction getURL)
         {
@@ -17,11 +16,10 @@ namespace dotnet_behaviours
 
         public Behaviors(string baseUri, Dictionary<string, object> defaults, IExceptionCallback cb)
         {
-            this.cb = cb;
             parameters = Utility.getDataFromSharedPreference();
             if (defaults != null) parameters.Clone(defaults);
             this.getURL = new GetURLFunction(baseUri);
-            initiateBehaviour(this.cb);
+            initiateBehaviour(cb);
         }
 
         private async void initiateBehaviour(IExceptionCallback cb)
