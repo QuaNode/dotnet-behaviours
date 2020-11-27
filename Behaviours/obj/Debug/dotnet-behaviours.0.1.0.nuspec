@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>dotnet-behaviours</id>
+    <version>0.1.0</version>
+    <title>Behaviours</title>
+    <authors>Ahmed Ragab, Tarek</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.Net client for Behaviours</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Microsoft.AspNet.WebApi.Client" version="5.2.7" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="12.0.3" exclude="Build,Analyzers" />
+        <dependency id="ini-parser-netstandard" version="2.5.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/bin/Debug/netstandard2.0/Behaviours.dll" target="lib/netstandard2.0/Behaviours.dll" />
+  </files>
+</package>
