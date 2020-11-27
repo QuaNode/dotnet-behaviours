@@ -308,10 +308,10 @@
     "/Volumes/Users/Home/.nuget/packages/": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "0.1.0",
     "restore": {
       "projectUniqueName": "/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/Behaviours.csproj",
-      "projectName": "Behaviours",
+      "projectName": "dotnet-behaviours",
       "projectPath": "/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/Behaviours.csproj",
       "packagesPath": "/Volumes/Users/Home/.nuget/packages/",
       "outputPath": "/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/obj/",

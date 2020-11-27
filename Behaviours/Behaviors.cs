@@ -20,7 +20,7 @@ namespace QuaNode {
         public Behaviours(string baseUrl, Action<BehaviourError> cb) : this(baseUrl, cb, null) {}
 
         public Behaviours(string baseUrl, Action<BehaviourError> cb, Dictionary<string, object> defaults) {
-           
+
             httpTask = new HttpTask(baseUrl);
             try {
 
@@ -73,16 +73,16 @@ namespace QuaNode {
             if(behaviour == null) throw new Exception("This behaviour does not exist");
             return delegate (Dictionary<string, object> behaviourData, Action<Dictionary<string, object>, BehaviourError> callback) {
 
-                if (behaviourData == null) behaviourData = new Dictionary<string, object>();                
-                Dictionary<string, object> parameters = Cache.getParameter().Merge(defaults);                
+                if (behaviourData == null) behaviourData = new Dictionary<string, object>();
+                Dictionary<string, object> parameters = Cache.getParameter().Merge(defaults);
                 Dictionary<string, object> @params = new Dictionary<string, object>();
                 if ((behaviour["parameters"] as Dictionary<string, object>) != null) {
 
-                    foreach (var parameter in (Dictionary<string, object>)behaviour["parameters"]) { 
-                
+                    foreach (var parameter in (Dictionary<string, object>)behaviour["parameters"]) {
+
                         @params[parameter.Key] = parameters[parameter.Key] ?? parameter.Value;
                     }
-                }                
+                }
                 Dictionary<string, string> headers = new Dictionary<string, string>();
                 Dictionary<string, object> body = new Dictionary<string, object>();
                 string url = (string)behaviour["path"];
@@ -94,11 +94,11 @@ namespace QuaNode {
                     var type = param["type"] as string;
                     if (value == null && type != "path") continue;
                     if (param["unless"].GetType().IsArray && ((object[])param["unless"]).Contains(behaviourName)) continue;
-                    if (param["for"].GetType().IsArray && !((object[])param["for"]).Contains(behaviourName)) continue;                                                            
+                    if (param["for"].GetType().IsArray && !((object[])param["for"]).Contains(behaviourName)) continue;
                     switch (type) {
 
                         case "header":
-                            headers[(string)param["key"]] = value.ToString();
+                            headers[(string)param["key"]] = value?.ToString();
                             break;
                         case "body":
                             string[] paths = ((string)param["key"]).Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
@@ -120,11 +120,11 @@ namespace QuaNode {
                                 and = "";
                             }
                             url += and + HttpUtility.UrlEncode((string)param["key"], Encoding.UTF8) + "=" +
-                                HttpUtility.UrlEncode(value.ToString(), Encoding.UTF8);
+                                HttpUtility.UrlEncode(value?.ToString(), Encoding.UTF8);
                             break;
                         case "path":
                             url = url.Replace(":" + HttpUtility.UrlEncode((string)param["key"], Encoding.UTF8), value != null ?
-                                HttpUtility.UrlEncode(value.ToString(), Encoding.UTF8) : "*");
+                                HttpUtility.UrlEncode(value?.ToString(), Encoding.UTF8) : "*");
                             break;
                     }
                 }
@@ -180,7 +180,7 @@ namespace QuaNode {
                                             if (!purposes.GetType().IsArray) {
 
                                                 object[] ṕurposes = { purposes };
-                                                purposes = ((Dictionary<string, object>)@return.Value)["purpose"] = ṕurposes;                                                
+                                                purposes = ((Dictionary<string, object>)@return.Value)["purpose"] = ṕurposes;
                                             }
                                             foreach (object purpose in ((object[])purposes)) {
 
@@ -231,14 +231,14 @@ namespace QuaNode {
                                     }
                                 }
                                 callback(resBody?["response"] as Dictionary<string, object>, error);
-                            });                        
+                            });
                     } catch (Exception exception) {
 
                         callback(null, new BehaviourError(exception.Message));
                     }
                 };
-                request(null);                
+                request(null);
             };
-        }        
+        }
     }
 }
