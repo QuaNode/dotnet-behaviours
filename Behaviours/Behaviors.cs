@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Web;
 using System.Text;
+using Newtonsoft.Json.Linq;
 
 namespace QuaNode {
 
@@ -13,7 +14,7 @@ namespace QuaNode {
         private Dictionary<string, object> defaults = null;
         private Action<BehaviourError> errorCallback = null;
         private HttpTask httpTask;
-        private Action[] callbacks = { };
+        private  List<Action> callbacks = new List<Action>();
 
         public Behaviours(string baseUrl) : this(baseUrl, null) { }
 
@@ -31,7 +32,7 @@ namespace QuaNode {
 
                             behavioursBody = body;
                             behavioursHeaders = new Dictionary<string, string>();
-                            behavioursHeaders["Content-Type"] = headers["Content-Type"];
+                            if(headers.ContainsKey("Content-Type")) behavioursHeaders["Content-Type"] = headers["Content-Type"];
                             foreach (Action callback in callbacks) callback();
                             errorCallback = cb;
                             this.defaults = defaults;
@@ -56,7 +57,7 @@ namespace QuaNode {
             if (cb == null) return;
             if (behavioursBody == null) {
 
-                callbacks.Append(cb);
+                callbacks.Add(cb);
             } else cb();
         }
 
@@ -69,7 +70,7 @@ namespace QuaNode {
 
             if (behaviourName == null) throw new Exception("Invalid behaviour name");
             if (behavioursBody == null) throw new Exception("Behaviors is not ready yet");
-            Dictionary<string, object> behaviour = (Dictionary<string, object>) behavioursBody["behaviourName"];
+            Dictionary<string, object> behaviour = ((JObject)behavioursBody[behaviourName])?.ToObject<Dictionary<string, object>>();
             if(behaviour == null) throw new Exception("This behaviour does not exist");
             return delegate (Dictionary<string, object> behaviourData, Action<Dictionary<string, object>, BehaviourError> callback) {
 

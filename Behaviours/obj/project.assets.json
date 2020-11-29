@@ -305,29 +305,30 @@
     ]
   },
   "packageFolders": {
-    "/Volumes/Users/Home/.nuget/packages/": {}
+    "C:\\Users\\EPL\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "0.1.0",
     "restore": {
-      "projectUniqueName": "/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/Behaviours.csproj",
+      "projectUniqueName": "D:\\Tarek\\dotNet_Projects\\dotnet-behaviours\\Behaviours\\Behaviours.csproj",
       "projectName": "dotnet-behaviours",
-      "projectPath": "/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/Behaviours.csproj",
-      "packagesPath": "/Volumes/Users/Home/.nuget/packages/",
-      "outputPath": "/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/obj/",
+      "projectPath": "D:\\Tarek\\dotNet_Projects\\dotnet-behaviours\\Behaviours\\Behaviours.csproj",
+      "packagesPath": "C:\\Users\\EPL\\.nuget\\packages\\",
+      "outputPath": "D:\\Tarek\\dotNet_Projects\\dotnet-behaviours\\Behaviours\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Volumes/Users/Home/.config/NuGet/NuGet.Config"
+        "C:\\Users\\EPL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
           "projectReferences": {}
         }
       },
@@ -339,7 +340,6 @@
     },
     "frameworks": {
       "netstandard2.0": {
-        "targetAlias": "netstandard2.0",
         "dependencies": {
           "Microsoft.AspNet.WebApi.Client": {
             "target": "Package",
@@ -370,7 +370,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/TestApp/bin/Debug/netcoreapp3.1
+/TestApp
+/dotnet-behaviours

@@ -61,9 +61,9 @@ namespace QuaNode {
         private HttpMethod getHttpMethod(string method) {
             
             try {
-                
-                return (HttpMethod)Enum.Parse(typeof(HttpMethod), method);
-            } catch {
+                return new HttpMethod(method);
+                //return (HttpMethod)Enum.Parse(typeof(HttpMethod), method);
+            } catch (Exception ex) {
 
                 return null;
             }
