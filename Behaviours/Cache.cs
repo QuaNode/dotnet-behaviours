@@ -12,15 +12,18 @@ namespace QuaNode {
         public static object getValueForParameter(Dictionary<string, object> parameter, Dictionary<string, object> data, string key,
             string name) {
 
-            if (data[key] != null) return data[key];
-            if (parameter["value"] != null) return (parameter["value"] as Func<string, Dictionary<string, object>, object>) != null ?
-                ((Func<string, Dictionary<string, object>, object>) parameter["value"])(name, data) : (string)parameter["value"];
-            else if (isEqual(parameter["source"], true)) {
+            if (data.Get(key) != null) return data.Get(key);
+            if (parameter.Get("value") != null) {
 
-                if ((getParameter()[key] as Dictionary<string, object>) != null) {
+                return (parameter.Get("value") as Func<string, Dictionary<string, object>, object>) != null ?
+                    (parameter.Get("value") as Func<string, Dictionary<string, object>, object>)(name, data) :
+                    parameter.Get("value");
+            } else if (isEqual(parameter.Get("source"), true)) {
 
-                    Dictionary<string, object> param = (Dictionary<string, object>) getParameter()[key];
-                    if (param["value"] != null) return param["value"];
+                if ((getParameter().Get(key) as Dictionary<string, object>) != null) {
+
+                    Dictionary<string, object> param = getParameter().Get(key) as Dictionary<string, object>;
+                    return param.Get("value");
                 }
             }
             return null;
@@ -44,8 +47,7 @@ namespace QuaNode {
             }            
             foreach(var item in data) {
 
-                if (iniData[sectionName].ContainsKey(item.Key)) iniData[sectionName][item.Key] = JsonConvert.SerializeObject(item.Value);
-                else iniData[sectionName].AddKey(item.Key, JsonConvert.SerializeObject(item.Value));
+                iniData[sectionName][item.Key] = JsonConvert.SerializeObject(item.Value);
             }
             fileParser.WriteFile(filePath, iniData);
         }
@@ -58,7 +60,10 @@ namespace QuaNode {
             FileIniDataParser fileParser = new FileIniDataParser();
             IniData iniData = fileParser.ReadFile(filePath);
             Dictionary<string, object> data = new Dictionary<string, object>();
-            foreach (var item in iniData[sectionName]) data.Add(item.KeyName, JsonConvert.DeserializeObject(item.Value));            
+            foreach (var item in iniData[sectionName]) {
+
+                data[item.KeyName] = JsonConvert.DeserializeObject(item.Value);
+            }
             return data;
         }
 

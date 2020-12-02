@@ -1,12 +1,3 @@
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/bin/Debug/netstandard2.0/Behaviours.deps.json
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/bin/Debug/netstandard2.0/Behaviours.dll
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/bin/Debug/netstandard2.0/Behaviours.pdb
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/obj/Debug/netstandard2.0/Behaviours.csprojAssemblyReference.cache
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/obj/Debug/netstandard2.0/Behaviours.AssemblyInfoInputs.cache
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/obj/Debug/netstandard2.0/Behaviours.AssemblyInfo.cs
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/obj/Debug/netstandard2.0/Behaviours.csproj.CoreCompileInputs.cache
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/obj/Debug/netstandard2.0/Behaviours.dll
-/Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/dotnet-behaviours/obj/Debug/netstandard2.0/Behaviours.pdb
 /Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/bin/Debug/netstandard2.0/Behaviours.deps.json
 /Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/bin/Debug/netstandard2.0/Behaviours.dll
 /Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/bin/Debug/netstandard2.0/Behaviours.pdb
@@ -16,11 +7,3 @@
 /Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/obj/Debug/netstandard2.0/Behaviours.csproj.CoreCompileInputs.cache
 /Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/obj/Debug/netstandard2.0/Behaviours.dll
 /Volumes/Users/Home/Documents/Work_Documents/QuaNode/Behaviours/Behaviours-SDK-DotNet/Behaviours/obj/Debug/netstandard2.0/Behaviours.pdb
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\bin\Debug\netstandard2.0\Behaviours.deps.json
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\bin\Debug\netstandard2.0\Behaviours.dll
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\bin\Debug\netstandard2.0\Behaviours.pdb
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\obj\Debug\netstandard2.0\Behaviours.csprojAssemblyReference.cache
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\obj\Debug\netstandard2.0\Behaviours.AssemblyInfoInputs.cache
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\obj\Debug\netstandard2.0\Behaviours.AssemblyInfo.cs
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\obj\Debug\netstandard2.0\Behaviours.dll
-D:\Tarek\dotNet_Projects\dotnet-behaviours\Behaviours\obj\Debug\netstandard2.0\Behaviours.pdb

@@ -32,16 +32,18 @@ namespace QuaNode {
 
                     response = await client.SendAsync(request);
                     if (response == null) throw new Exception("Request Failed");
-                    var responseBody = JsonConvert.DeserializeObject<Dictionary<string, object>>(await response.Content.ReadAsStringAsync());
+                    var responseBody =
+                        JsonConvert.DeserializeObject<Dictionary<string, object>>(await response.Content.ReadAsStringAsync());
+                    responseBody.Parse();
                     Dictionary<string, string> responseHeaders = new Dictionary<string, string>();
                     BehaviourError responseError = null;
                     foreach (var header in response.Headers) responseHeaders[header.Key] = string.Join("", header.Value.ToArray());
                     if (response.StatusCode != HttpStatusCode.OK) {
 
                         var errorMessage = await response.RequestMessage.Content.ReadAsStringAsync();
-                        if ((responseBody["response"] as Dictionary<string, object>) != null &&
-                            ((Dictionary<string, object>)responseBody["response"])["message"] != null)
-                            errorMessage = (string)((Dictionary<string, object>)responseBody["response"])["message"];
+                        if ((responseBody.Get("response") as Dictionary<string, object>) != null &&
+                            (responseBody.Get("response") as Dictionary<string, object>)?.Get("message") != null)
+                            errorMessage = (responseBody.Get("response") as Dictionary<string, object>)?.Get("message")?.ToString();
                         responseError = new BehaviourError(errorMessage);
                         responseError.Code = (int)((object)response.StatusCode);
                     }
@@ -61,9 +63,9 @@ namespace QuaNode {
         private HttpMethod getHttpMethod(string method) {
             
             try {
+
                 return new HttpMethod(method);
-                //return (HttpMethod)Enum.Parse(typeof(HttpMethod), method);
-            } catch (Exception ex) {
+            } catch {
 
                 return null;
             }
