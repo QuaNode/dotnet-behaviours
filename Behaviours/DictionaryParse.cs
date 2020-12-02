@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 
 namespace QuaNode {
@@ -8,7 +9,9 @@ namespace QuaNode {
 
         public static void Parse<T>(this Dictionary<T, object> source) {
 
-            foreach(var item in source) {
+            for (var j = 0; j < source.Count; j++) {
+
+                var item = source.ElementAt(j); 
 
                 if ((source.Get(item.Key) as JObject) != null) {
 

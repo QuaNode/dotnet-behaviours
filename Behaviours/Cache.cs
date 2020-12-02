@@ -56,13 +56,14 @@ namespace QuaNode {
 
             string filePath = Path.Combine(getStoragePath(), "Behaviours.ini");
             string sectionName = "Behaviors";
-            if (!File.Exists(filePath)) return null;
+            if (!File.Exists(filePath)) return new Dictionary<string, object>();
             FileIniDataParser fileParser = new FileIniDataParser();
             IniData iniData = fileParser.ReadFile(filePath);
             Dictionary<string, object> data = new Dictionary<string, object>();
             foreach (var item in iniData[sectionName]) {
 
-                data[item.KeyName] = JsonConvert.DeserializeObject(item.Value);
+                data[item.KeyName] = JsonConvert.DeserializeObject<Dictionary<string, object>>(item.Value);
+                (data[item.KeyName] as Dictionary<string, object>)?.Parse();
             }
             return data;
         }

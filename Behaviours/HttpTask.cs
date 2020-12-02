@@ -26,37 +26,40 @@ namespace QuaNode {
                 HttpClient client = new HttpClient();
                 HttpRequestMessage request = new HttpRequestMessage(getHttpMethod(method), this.baseUrl + path);
                 if (headers != null) foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
-                if (body != null) request.Content = new ByteArrayContent(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(body)));
+                //if (body != null) request.Content = new ByteArrayContent(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(body)));
+                if (body != null)
+                    request.Content =
+                    new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, headers.Get("Content-Type") as string ?? "application/json");
                 HttpResponseMessage response = null;
+                Dictionary<string, object> responseBody = null;
+                Dictionary<string, string> responseHeaders = null;
+                BehaviourError responseError = null;
                 try {
 
                     response = await client.SendAsync(request);
                     if (response == null) throw new Exception("Request Failed");
-                    var responseBody =
+                    responseBody =
                         JsonConvert.DeserializeObject<Dictionary<string, object>>(await response.Content.ReadAsStringAsync());
                     responseBody.Parse();
-                    Dictionary<string, string> responseHeaders = new Dictionary<string, string>();
-                    BehaviourError responseError = null;
+                    responseHeaders = new Dictionary<string, string>();
                     foreach (var header in response.Headers) responseHeaders[header.Key] = string.Join("", header.Value.ToArray());
+                    foreach (var header in response.Content.Headers) responseHeaders[header.Key] = string.Join("", header.Value.ToArray());
                     if (response.StatusCode != HttpStatusCode.OK) {
 
                         var errorMessage = await response.RequestMessage.Content.ReadAsStringAsync();
-                        if ((responseBody.Get("response") as Dictionary<string, object>) != null &&
-                            (responseBody.Get("response") as Dictionary<string, object>)?.Get("message") != null)
-                            errorMessage = (responseBody.Get("response") as Dictionary<string, object>)?.Get("message")?.ToString();
+                        if (responseBody.Get("message") != null) errorMessage = responseBody.Get("message")?.ToString();
                         responseError = new BehaviourError(errorMessage);
                         responseError.Code = (int)((object)response.StatusCode);
                     }
-                    cb(responseBody, responseHeaders, responseError);
                 } catch (Exception exception) {
-
-                    cb(null, null, new BehaviourError(exception.Message));
+                    responseError = new BehaviourError(exception.Message);
                 } finally {
 
                     if (client != null) client.Dispose();
                     if (request != null) request.Dispose();
                     if (response != null) response.Dispose();
                 }
+                cb(responseBody, responseHeaders, responseError);
             });            
         }
 

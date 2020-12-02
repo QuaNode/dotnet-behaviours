@@ -143,7 +143,7 @@ namespace QuaNode {
                     try {
 
                         var request_method = (behaviour.Get("method")?.ToString()?[0] + "").ToUpper() +
-                            behaviour.Get("method")?.ToString()?.Substring(1, behaviour.Get("method").ToString().Length).ToLower();
+                            behaviour.Get("method")?.ToString()?.Substring(1, behaviour.Get("method").ToString().Length-1).ToLower();
                         if (signature != null) {
 
                             Dictionary<string, string> signedHeaders = new Dictionary<string, string>();
@@ -170,7 +170,7 @@ namespace QuaNode {
                                         string paramType = (@return.Value as Dictionary<string, object>)?.Get("type")?.ToString();
                                         if (isEqual(paramType, "header")) {
 
-                                            paramValue = (resBody?.Get("headers") as Dictionary<string, object>)?.Get(@return.Key);
+                                            paramValue = resHeaders?.Get(@return.Key);
                                             paramKey = (@return.Value as Dictionary<string, object>)?.Get("key")?.ToString();
                                             if (paramKey == null) paramKey = @return.Key;
                                             headers[paramKey] = paramValue as string;
@@ -236,7 +236,9 @@ namespace QuaNode {
                                     if (headers.Count > 0) {
 
                                         if (body.Count == 0) body["data"] = resBody?.Get("response");
-                                        callback(new Dictionary<string, object>((IDictionary<string, object>)headers).Merge(body), error);
+                                        Dictionary<string, object> data = new Dictionary<string, object>();
+                                        foreach (var item in headers) data[item.Key] = item.Value;
+                                        callback(data.Merge(body), error);
                                         return;
                                     }
                                 }
