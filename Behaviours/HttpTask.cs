@@ -26,10 +26,11 @@ namespace QuaNode {
                 HttpClient client = new HttpClient();
                 HttpRequestMessage request = new HttpRequestMessage(getHttpMethod(method), this.baseUrl + path);
                 if (headers != null) foreach (var header in headers) request.Headers.Add(header.Key, header.Value);
-                //if (body != null) request.Content = new ByteArrayContent(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(body)));
-                if (body != null)
-                    request.Content =
-                    new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, headers.Get("Content-Type") as string ?? "application/json");
+                if (body != null) {
+
+                    request.Content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8,
+                        headers.Get("Content-Type")?.ToString() ?? "application/json");
+                }
                 HttpResponseMessage response = null;
                 Dictionary<string, object> responseBody = null;
                 Dictionary<string, string> responseHeaders = null;
@@ -52,6 +53,7 @@ namespace QuaNode {
                         responseError.Code = (int)((object)response.StatusCode);
                     }
                 } catch (Exception exception) {
+
                     responseError = new BehaviourError(exception.Message);
                 } finally {
 

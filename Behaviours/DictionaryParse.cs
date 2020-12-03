@@ -12,7 +12,6 @@ namespace QuaNode {
             for (var j = 0; j < source.Count; j++) {
 
                 var item = source.ElementAt(j); 
-
                 if ((source.Get(item.Key) as JObject) != null) {
 
                     source[item.Key] = (source.Get(item.Key) as JObject).ToObject<Dictionary<T, object>>();
