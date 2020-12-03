@@ -5,7 +5,7 @@
     <RootNamespace>QuaNode</RootNamespace>
     <PackOnBuild>true</PackOnBuild>
     <PackageId>dotnet-behaviours</PackageId>
-    <PackageVersion>0.1</PackageVersion>
+    <PackageVersion>1.0</PackageVersion>
     <Authors>Ahmed Ragab, Tarek</Authors>
     <Owners>QuaNode</Owners>
     <Summary>.Net client for Behaviours</Summary>
